@@ -518,10 +518,35 @@
     margin-top: 0.5rem;
   }
 
+  /* ─── CONTACT BAR ─── */
+  .contact-bar {
+    background: var(--steel);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 1px solid rgba(255,78,0,0.2);
+    border-bottom: 1px solid rgba(255,78,0,0.2);
+  }
+  .cb-item { display: flex; align-items: center; gap: 0.75rem; }
+  .cb-icon { font-size: 20px; }
+  .cb-text a, .cb-text span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cb-text a:hover { color: var(--fire); }
+  .cb-sub { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
   /* ─── FOOTER ─── */
   footer {
     background: var(--dark2);
-    border-top: 1px solid rgba(255,78,0,0.2);
+    border-top: 1px solid rgba(255,78,0,0.12);
     padding: 4rem 2rem;
     text-align: center;
   }
@@ -544,37 +569,11 @@
     margin-bottom: 2rem;
   }
 
-  .contact-row {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-  }
-
-  .contact-item {
-    text-align: center;
-  }
-
-  .contact-item .clabel {
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-
-  .contact-item .cval {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--white);
-  }
-
   .copyright {
     font-size: 12px;
     color: rgba(255,255,255,0.2);
     letter-spacing: 0.1em;
+    margin-top: 2rem;
   }
 
   /* ─── ANIMATIONS ─── */
@@ -693,7 +692,7 @@
       <span class="pillar-icon">🌿</span>
       <div class="pillar-title">Stretching & Forma</div>
       <div class="pillar-sub">Oblikovanje</div>
-      <p class="pillar-text">Dinamički i statički stretching, mobilnost zglobova, korekcija posture i vežbe oblikovanja za dugoročno zdravlje i estetiku.</p>
+      <p class="pillar-text">Dinamički i statički stretching, mobilnost zglobova, korekcija posture i vježbe oblikovanja za dugoročno zdravlje i estetiku.</p>
     </div>
   </div>
 </section>
@@ -757,7 +756,7 @@
       <div class="equip-card">
         <span class="equip-number">04</span>
         <span class="equip-icon">💪</span>
-        <div class="equip-name">Telesna težina</div>
+        <div class="equip-name">Tjelesna težina</div>
         <p class="equip-desc">Burpee, pull-up, dip, push-up, plank variacije — kalistenija kao temelj svakog ozbiljnog programa.</p>
       </div>
     </div>
@@ -889,4 +888,3 @@
 
 </body>
 </html>
-
