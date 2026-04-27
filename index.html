@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BootCamp — prof. Bojan Đokić</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --fire: #FF4E00;
+    --amber: #FFAA00;
+    --dark: #0A0A0A;
+    --dark2: #141414;
+    --dark3: #1E1E1E;
+    --steel: #2A2A2A;
+    --muted: #888;
+    --white: #F5F5F0;
+    --cream: #E8E4D9;
+  }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,78,0,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 20%, rgba(255,170,0,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,78,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,78,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--fire);
+    border: 1px solid rgba(255,78,0,0.4);
+    padding: 6px 20px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 18vw, 200px);
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    animation: fadeUp 0.7s ease 0.1s both;
+    position: relative;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--fire);
+    -webkit-text-stroke: 2px var(--fire);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(18px, 4vw, 32px);
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-top: 1.5rem;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+
+  .prof-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(22px, 5vw, 44px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+
+  .prof-name strong {
+    color: var(--amber);
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--fire), transparent);
+    margin: 2.5rem auto;
+    animation: fadeUp 0.7s ease 0.4s both;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 560px;
+    animation: fadeUp 0.7s ease 0.5s both;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3rem;
+    animation: fadeUp 0.7s ease 0.6s both;
+  }
+
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--fire);
+    color: #fff;
+    border: none;
+    padding: 16px 44px;
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #ff6a2a; transform: translateY(-2px); }
+
+  .btn-secondary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 16px 44px;
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: border-color 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--fire); transform: translateY(-2px); }
+
+  /* ─── DISCIPLINES STRIP ─── */
+  .strip {
+    background: var(--fire);
+    overflow: hidden;
+    padding: 14px 0;
+    position: relative;
+  }
+  .strip-inner {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+  }
+  .strip-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0 2rem;
+  }
+  .strip-item::before {
+    content: '✦';
+    margin-right: 1.5rem;
+    opacity: 0.7;
+  }
+
+  /* ─── PILLARS SECTION ─── */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 7vw, 80px);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 4rem;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .pillar {
+    background: var(--dark2);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .pillar:hover { background: var(--dark3); }
+
+  .pillar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--fire);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .pillar:hover::after { transform: scaleX(1); }
+
+  .pillar-icon {
+    font-size: 36px;
+    margin-bottom: 1.25rem;
+    display: block;
+    filter: grayscale(0.2);
+  }
+
+  .pillar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-sub {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 1rem;
+  }
+
+  .pillar-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* ─── EQUIPMENT SECTION ─── */
+  .equipment-section {
+    background: var(--dark2);
+    padding: 6rem 2rem;
+  }
+  .equipment-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .equip-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .equip-card:hover {
+    border-color: rgba(255,78,0,0.4);
+    transform: translateY(-6px);
+  }
+
+  .equip-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: rgba(255,78,0,0.12);
+    position: absolute;
+    top: 1rem; right: 1.25rem;
+  }
+
+  .equip-icon {
+    font-size: 48px;
+    display: block;
+    margin: 0 auto 1.25rem;
+  }
+
+  .equip-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .equip-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ─── STATS ─── */
+  .stats-section {
+    padding: 5rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2px;
+    background: rgba(255,78,0,0.15);
+  }
+
+  .stat {
+    background: var(--dark);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--fire);
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ─── FORMAT SECTION ─── */
+  .format-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .format-section { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .format-list {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .format-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .format-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--fire);
+    min-width: 36px;
+    line-height: 1;
+  }
+
+  .format-text h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .format-text p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .info-card {
+    background: var(--dark2);
+    border-left: 3px solid var(--fire);
+    padding: 3rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .info-key {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .info-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .info-val.accent { color: var(--amber); }
+
+  .price-block {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255,78,0,0.08);
+    border: 1px solid rgba(255,78,0,0.2);
+  }
+
+  .price-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--fire);
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid rgba(255,78,0,0.2);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  footer .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  footer .logo span { color: var(--fire); }
+
+  footer .tagline {
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .contact-item .clabel {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .contact-item .cval {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .copyright {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .section, .equipment-inner { padding: 4rem 1.25rem; }
+    .stats-section { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="tag">Novi program · 2026</div>
+  <h1 class="hero-title">
+    Boot<span>Camp</span>
+  </h1>
+  <p class="hero-sub">Funkcionalni trening · Snaga · Izdržljivost</p>
+  <p class="prof-name">sa <strong>prof. Bojanom Đokićem</strong></p>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">
+    Kompletan program koji kombinuje kalisteniku, kettlebell, Bulgarian Bag i Battle Rope
+    u intenzivnim kružnim treninzima koji oblikuju telo i grade pravu snagu.
+  </p>
+  <div class="cta-row">
+    <a href="#prijava" class="btn-primary">Prijavi se odmah</a>
+    <a href="#program" class="btn-secondary">Pogledaj program</a>
+  </div>
+</section>
+
+<!-- SCROLLING STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Kružni trening</span>
+    <span class="strip-item">Kalistenija</span>
+    <span class="strip-item">Funkcionalna snaga</span>
+    <span class="strip-item">Cardio</span>
+    <span class="strip-item">Stretching</span>
+    <span class="strip-item">Oblikovanje</span>
+    <span class="strip-item">Endurance</span>
+    <span class="strip-item">Kettlebell</span>
+    <span class="strip-item">Bulgarian Bag</span>
+    <span class="strip-item">Battle Rope</span>
+    <!-- duplicate for seamless loop -->
+    <span class="strip-item">Kružni trening</span>
+    <span class="strip-item">Kalistenija</span>
+    <span class="strip-item">Funkcionalna snaga</span>
+    <span class="strip-item">Cardio</span>
+    <span class="strip-item">Stretching</span>
+    <span class="strip-item">Oblikovanje</span>
+    <span class="strip-item">Endurance</span>
+    <span class="strip-item">Kettlebell</span>
+    <span class="strip-item">Bulgarian Bag</span>
+    <span class="strip-item">Battle Rope</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stat">
+    <div class="stat-num">60</div>
+    <div class="stat-label">Minuta po treningu</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3×</div>
+    <div class="stat-label">Sedmično</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Discipline</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Motivacija</div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="section" id="program">
+  <p class="section-label">Program treninga</p>
+  <h2 class="section-title">Četiri stuba programa</h2>
+  <p class="section-body">Svaki trening je pažljivo strukturisan da pokrije sve aspekte fitness kondicioniranja — od mobilnosti do maksimalnog napora.</p>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-icon">🔥</span>
+      <div class="pillar-title">Funkcionalna snaga</div>
+      <div class="pillar-sub">Strength</div>
+      <p class="pillar-text">Složeni višezglobni pokreti koji grade pravu, primjenjivu snagu. Kettlebell swing, snatch, clean & press uz Bulgarian Bag rotacije i torzijske vežbe.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">⚡</span>
+      <div class="pillar-title">Kružni trening</div>
+      <div class="pillar-sub">Circuit</div>
+      <p class="pillar-text">Visokointenzivni krugovi bez odmora koji kombinuju sve alate — nema monotonije, svaki krug je nova bitka.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🏃</span>
+      <div class="pillar-title">Cardio & Endurance</div>
+      <div class="pillar-sub">Izdržljivost</div>
+      <p class="pillar-text">Battle Rope intervali, kalistenički AMRAP setovi i sprinterski cardio protokoli koji podižu aerobni kapacitet na novi nivo.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🌿</span>
+      <div class="pillar-title">Stretching & Forma</div>
+      <div class="pillar-sub">Oblikovanje</div>
+      <p class="pillar-text">Dinamički i statički stretching, mobilnost zglobova, korekcija posture i vježbe oblikovanja za dugoročno zdravlje i estetiku.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<div class="equipment-section">
+  <div class="equipment-inner">
+    <p class="section-label">Oprema</p>
+    <h2 class="section-title">Alati koji grade šampione</h2>
+    <p class="section-body">Selektovana oprema koja se nadopunjuje — svaki alat ima specifičnu funkciju u programu.</p>
+
+    <div class="equipment-grid">
+      <div class="equip-card">
+        <span class="equip-number">01</span>
+        <span class="equip-icon">
+          <svg viewBox="0 0 80 80" width="64" height="64" style="display:block;margin:0 auto;">
+            <!-- handle grip bar -->
+            <rect x="28" y="20" width="24" height="7" rx="3.5" fill="#FF4E00"/>
+            <!-- left arm -->
+            <rect x="28" y="20" width="7" height="20" rx="3.5" fill="#FF4E00"/>
+            <!-- right arm -->
+            <rect x="45" y="20" width="7" height="20" rx="3.5" fill="#FF4E00"/>
+            <!-- neck connector -->
+            <rect x="33" y="37" width="14" height="6" rx="0" fill="#cc3e00"/>
+            <!-- bell body -->
+            <ellipse cx="40" cy="57" rx="21" ry="19" fill="#FF4E00"/>
+            <!-- highlight -->
+            <ellipse cx="34" cy="50" rx="6" ry="5" fill="rgba(255,255,255,0.12)"/>
+            <!-- flat base line -->
+            <rect x="21" y="73" width="38" height="4" rx="2" fill="#cc3e00"/>
+          </svg>
+        </span>
+        <div class="equip-name">Kettlebell</div>
+        <p class="equip-desc">Kralj funkcionalnog treninga. Swing, clean, snatch, goblet squat — razvija eksplozivnu snagu i čvrstoću kora.</p>
+      </div>
+      <div class="equip-card">
+        <span class="equip-number">02</span>
+        <span class="equip-icon">
+          <svg viewBox="0 0 80 80" width="64" height="64" style="display:block;margin:0 auto;">
+            <!-- main crescent / horseshoe body -->
+            <path d="M 14 66 Q 14 18 40 18 Q 66 18 66 66" fill="none" stroke="#FF4E00" stroke-width="12" stroke-linecap="round"/>
+            <!-- left handle knob -->
+            <ellipse cx="14" cy="66" rx="7" ry="7" fill="#cc3e00" stroke="#FF4E00" stroke-width="2"/>
+            <!-- right handle knob -->
+            <ellipse cx="66" cy="66" rx="7" ry="7" fill="#cc3e00" stroke="#FF4E00" stroke-width="2"/>
+            <!-- inner arc highlight -->
+            <path d="M 22 64 Q 22 32 40 32 Q 58 32 58 64" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="4" stroke-linecap="round"/>
+            <!-- center label stitching -->
+            <path d="M 30 52 Q 40 46 50 52" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div class="equip-name">Bulgarian Bag</div>
+        <p class="equip-desc">Rotaciona snaga, dinamički pokreti i stabilizacija ramenog pojasa. Idealan za sport-specifičan trening.</p>
+      </div>
+      <div class="equip-card">
+        <span class="equip-number">03</span>
+        <span class="equip-icon">🪢</span>
+        <div class="equip-name">Battle Rope</div>
+        <p class="equip-desc">Nema alibi — Battle Rope ne laže. Kardiovaskularni eksplozivni napori koji spaljuju i grade simultano.</p>
+      </div>
+      <div class="equip-card">
+        <span class="equip-number">04</span>
+        <span class="equip-icon">💪</span>
+        <div class="equip-name">Tjelesna težina</div>
+        <p class="equip-desc">Burpee, pull-up, dip, push-up, plank variacije — kalistenija kao temelj svakog ozbiljnog programa.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMAT + INFO CARD -->
+<div class="format-section">
+  <div>
+    <p class="section-label">Struktura časa</p>
+    <h2 class="section-title">Kako izgleda jedan trening</h2>
+    <ul class="format-list">
+      <li class="format-item">
+        <span class="format-num">01</span>
+        <div class="format-text">
+          <h4>Zagrevanje & Mobilnost</h4>
+          <p>Dinamički stretching, aktivacija mišića i priprema zglobova — 8 do 10 minuta.</p>
+        </div>
+      </li>
+      <li class="format-item">
+        <span class="format-num">02</span>
+        <div class="format-text">
+          <h4>Snaga blok</h4>
+          <p>Funkcionalni pokretni obrasci sa kettlebellom i Bulgarian Bagom — 15 do 20 minuta.</p>
+        </div>
+      </li>
+      <li class="format-item">
+        <span class="format-num">03</span>
+        <div class="format-text">
+          <h4>Kružni trening</h4>
+          <p>Tri do četiri kruga — kombinacija svih alata na visokom intenzitetu — 20 minuta.</p>
+        </div>
+      </li>
+      <li class="format-item">
+        <span class="format-num">04</span>
+        <div class="format-text">
+          <h4>Cardio finisher</h4>
+          <p>Battle Rope ili kalistenički AMRAP — kratko, brutalno, efikasno — 8 minuta.</p>
+        </div>
+      </li>
+      <li class="format-item">
+        <span class="format-num">05</span>
+        <div class="format-text">
+          <h4>Cool-down & Stretching</h4>
+          <p>Statički stretching, mobilnost i opuštanje mišića — 8 do 10 minuta.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="info-card" id="prijava">
+    <h3>Informacije</h3>
+    <div class="info-row">
+      <span class="info-key">Trajanje</span>
+      <span class="info-val">60 min / trening</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Učestalost</span>
+      <span class="info-val">3× sedmično</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Nivo</span>
+      <span class="info-val">Svi nivoi</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Lokacija</span>
+      <span class="info-val accent">TBA · Kontaktiraj nas</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Grupu vodi</span>
+      <span class="info-val">prof. Bojan Đokić</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Start</span>
+      <span class="info-val accent">Uskoro · Prijavi se</span>
+    </div>
+    <div class="price-block">
+      <div class="price-label">Cijena po osobi 5000 din/mesečno</div>
+      <div class="price">KONTAKT</div>
+      <div class="price-note">Popusti za studente i grupe</div>
+    </div>
+    <a href="tel:+381642872717" class="btn-primary" style="display:block; text-align:center; margin-top:1.5rem; clip-path:none;">
+      📞 Pozovi i prijavi se
+    </a>
+    <a href="mailto:bootcamp.djokic@gmail.com" class="btn-secondary" style="display:block; text-align:center; margin-top:0.75rem; clip-path:none;">
+      ✉ bootcamp.djokic@gmail.com
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Boot<span>Camp</span></div>
+  <p class="tagline">prof. Bojan Đokić · Funkcionalni trening · Snaga · Forma</p>
+  <div class="contact-row">
+    <div class="contact-item">
+      <div class="clabel">Telefon</div>
+      <div class="cval">+381 64 287 2717</div>
+    </div>
+    <div class="contact-item">
+      <div class="clabel">Instagram</div>
+      <div class="cval">@bootcamp.djokic</div>
+    </div>
+    <div class="contact-item">
+      <div class="clabel">Email</div>
+      <div class="cval">bootcamp.djokic@gmail.com</div>
+    </div>
+  </div>
+  <p class="copyright">© 2026 BootCamp · prof. Bojan Đokić · Sva prava zadržana</p>
+</footer>
+
+</body>
+</html>
