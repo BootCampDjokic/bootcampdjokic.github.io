@@ -19,4 +19,6 @@ Automatic via GitHub Pages on push to main branch.
 ##  Contact
 
 * Phone: +381 64 287 2717
+* WhatsUp: +381 64 287 2717
+* Instagram: bootcamp.djokic
 * Email: [bootcamp.djokic@gmail.com](mailto:bootcamp.djokic@gmail.com)
